@@ -35,9 +35,4 @@ loginController.authWithGithub(req, res){
   next()
 }
 
-loginController.addUserToDatabase = async(req, res) => {
-    
-}
-
-
 exports.module = loginController
