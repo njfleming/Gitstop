@@ -1,3 +1,4 @@
+const { query } = require('../models/gitstopModel')
 const db = require('../models/gitstopModel')
 const dbController = {}
 
@@ -32,7 +33,26 @@ dbController.checkUserInDatabase = async (req, res) => {
 }
 
 dbController.addUserToDatabase = async (req, res) => {
-    
+  try {
+    const queryString =
+    `INSERT INTO "public"."User" (user_name, user_email)
+    VALUES ($1, $2)
+    `
+
+    const {name, email} = res.locals.userData
+
+    await db.query(queryString, [name, email], (resp) => {
+        console.log(resp)
+    })
+    next();
+  }
+  catch (err) {
+    next({
+      log: `dbController.addUserToDatabase: ${err}`,
+      status: 500,
+      message: `${err}`
+    })
+  }    
 }
 
 exports.modules = dbController
