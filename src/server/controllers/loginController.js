@@ -1,8 +1,8 @@
 const axios = require('axios');
 const loginController = {};
 
-const clientID = '72e3b30caf0e91e8a764'
-const clientSecret = 'a3c8547c9983f3abc6ac2e3878369a89b94a0e5c'
+const clientID =
+const clientSecret =
 
 loginController.authWithGithub(req, res){
     // The req.query object has the query params that were sent to this route.
