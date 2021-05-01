@@ -1,14 +1,14 @@
-const { Pool } = require('pg')
-const myURI =
+// const { Pool } = require('pg')
+// const myURI =
 
-const URI = process.env.DB_URI || myURI
-const db = new Pool({
-    connectionString: URI
-})
+// const URI = process.env.DB_URI || myURI
+// const db = new Pool({
+//     connectionString: URI
+// })
 
-module.exports = {
-    query: (text, params, callback) => {
-        console.log('executed query', text);
-        return db.query(text, params, callback);
-    }
-}
+// module.exports = {
+//     query: (text, params, callback) => {
+//         console.log('executed query', text);
+//         return db.query(text, params, callback);
+//     }
+// }
