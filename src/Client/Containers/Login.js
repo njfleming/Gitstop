@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Text, View, StyleSheet, Image ,TouchableOpacity} from 'react-native';
+import { Button, Text, View, StyleSheet, Image ,TouchableOpacity, Alert} from 'react-native';
 
 export default ({history}) => {
 
@@ -9,18 +9,40 @@ export default ({history}) => {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(),
     })
-    .then((res)=>alert("hey there we did it"))
+    .then((res)=>showAlert())
     .catch((err)=>(err))
   };
+
+
+  const showAlert = () =>
+  Alert.alert(
+    "Alert Title",
+    "My Alert Msg",
+    [
+      {
+        text: "Cancel",
+        onPress: () => Alert.alert("Cancel Pressed"),
+        style: "cancel",
+      },
+    ],
+    {
+      cancelable: true,
+      onDismiss: () =>
+        Alert.alert(
+          "This alert was dismissed by tapping outside of the alert dialog."
+        ),
+    }
+  );
+
 
   return (
     <View style= {styles.container}>
       
-      <Text>Welcome to GitStop!
+      <Text>Welcome to GitStop! 
        <Text>{'\n'}</Text>
         This is your teams shop to work with fixing those flats and bumps in your code. Work collaboratively and keep track of all present issues in your repositories to stay ahead of the curve. 
       </Text>
-      <TouchableOpacity style={styles.loginButton} activeOpacity={0.5} onPress={(event) => onSubmit()}>
+      <TouchableOpacity style={styles.loginButton} activeOpacity={0.5} onPress={showAlert}>
         <Image 
           source={require('../github-icon.png')} 
           style={styles.ImageIconStyle} 
@@ -28,6 +50,7 @@ export default ({history}) => {
         <Text style={styles.TextStyle}> Login Using Github </Text>
 
       </TouchableOpacity>
+      <Button title="Home Page" onPress={() => history.push("/home")}/>
     </View> 
   );
 };
