@@ -9,16 +9,12 @@ const App = () => {
   return (
     <NativeRouter>
         <View style={styles.container}>
-          <Switch>
+          
             <Route exact path="/" component={Login}></Route>
             <Route path="/home" component={Home}></Route>
-          </Switch>
 
         </View>
     </NativeRouter>
-
-
-
   );
 }
 
