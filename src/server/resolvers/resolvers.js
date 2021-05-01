@@ -1,19 +1,16 @@
-import { ApolloServer } from 'apollo-server-express';
+const { ApolloServer } = require('apollo-server-express');
+const { schema, userData, projectsData } = require('../schema/databaseSchema.js')
 
 const resolvers = {
   Query: {
-    user: (args) => {
-      if (user.name === args.name) {
-        return {
-          user
-        }
-      }
+    users: () => {
+      return Object.values(userData);
+      },
+    user: () => {
+      return name;
     }
   },
-  Issues: {
-    body,
-    comments
-  }
-}
+};
 
-export default resolvers;
+module.exports = resolvers;
+
