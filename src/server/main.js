@@ -1,10 +1,19 @@
+const { graphqlExpress } = 'apollo-server-express';
 const express = require('express');
-const axCios = require('axios');
+const axios = require('axios');
 const port = process.env.PORT || 3000;
 const loginRouter = require('./routes/loginRouter.js')
 const app = express();
 
-app.use(express.json());
+const schema = require('./schema/querySchema.js')
+const resolvers = require('./schema/resolvers.js')
+
+const server = new ApolloServer({
+  typeDefs: schema,
+  resolvers,
+});
+ 
+server.applyMiddleware({ app, path: '/graphql' });
 
 //Serve landing page
 
