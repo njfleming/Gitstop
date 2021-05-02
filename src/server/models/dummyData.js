@@ -1,12 +1,12 @@
 const userData = {
   1: {
     id: '1',
-    name: 'testUser',
+    username: 'testUser',
     email: 'test@gmail.com',
   },
   2: {
     id: '2',
-    name: 'testUser2',
+    username: 'testUser2',
     email: 'test2@gmail.com',
   },
 };
