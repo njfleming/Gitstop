@@ -2,7 +2,7 @@ const { ApolloServer } = require('apollo-server-express');
 const express = require('express');
 const axios = require('axios');
 const loginRouter = require('./routes/loginRouter.js');
-const { schema, resolvers } = require('./schema/databaseSchema.js');
+const { schema, resolvers } = require('./schema/dbSchema.js');
 
 const app = express();
 const port = process.env.PORT || 8000;
