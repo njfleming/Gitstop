@@ -1,15 +1,19 @@
 const { ApolloServer } = require('apollo-server-express');
 const express = require('express');
-const axios = require('axios');
-const loginRouter = require('./routes/loginRouter.js');
 const schema = require('./schema/dbSchema.js');
 const resolvers = require('./resolvers/resolvers.js');
+// const axios = require('axios');
+// const loginRouter = require('./routes/loginRouter.js');
+
 const app = express();
 const port = process.env.PORT || 8000;
 
 const server = new ApolloServer({
   typeDefs: schema,
   resolvers,
+  // context: {
+  //   users: 
+  // }
 });
 
 server.applyMiddleware({ app });
