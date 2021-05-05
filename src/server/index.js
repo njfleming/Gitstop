@@ -3,22 +3,24 @@ const express = require('express');
 const schema = require('./schema/dbSchema.js');
 const resolvers = require('./resolvers/resolvers.js');
 const loginRouter = require('./routes/loginRouter.js');
+const oauthRouter = require('./routes/oauthRouter.js');
+const bodyParser = require('body-parser')
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-const server = new ApolloServer({
+const gqlServer = new ApolloServer({
   typeDefs: schema,
   resolvers,
-  // context: {
-  //   users: 
-  // }
 });
 
-server.applyMiddleware({ app });
+// app.use('/graphql', bodyParser.json(), gqlServer({}));
 
 // Routes
 app.use('/login', loginRouter);
+app.use('/oauth-callback', oauthRouter);
+
+gqlServer.applyMiddleware({ app });
 
 app.get('*', (err, req, res, next) => {
   res.status(404).send('Server Error', err);
