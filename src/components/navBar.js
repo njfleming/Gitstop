@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, StyleSheet, Button} from 'react-native';
 import { Entypo, Octicons, FontAwesome } from '@expo/vector-icons'; 
 import { useHistory} from "react-router-native";
 
 
-
 export default () => {
+
     const history = useHistory();
     return (
       <View style = {styles.container} >
