@@ -56,4 +56,4 @@ dbController.checkUser = async (req, res, next) => {
   next();
 };
 
-exports.modules = dbController;
+module.exports = dbController;
