@@ -1,17 +1,18 @@
 const { ApolloServer } = require('apollo-server-express');
 const express = require('express');
 const schema = require('./schema/dbSchema.js');
-const resolvers = require('./resolvers/resolvers.js');
+const gqlResolvers = require('./resolvers/resolvers.js');
 const loginRouter = require('./routes/loginRouter.js');
 const oauthRouter = require('./routes/oauthRouter.js');
 const bodyParser = require('body-parser')
+const dbSequelize = require('./connectors/connectors')
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 const gqlServer = new ApolloServer({
   typeDefs: schema,
-  resolvers,
+  resolvers: gqlResolvers,
 });
 
 // app.use('/graphql', bodyParser.json(), gqlServer({}));
@@ -20,7 +21,8 @@ const gqlServer = new ApolloServer({
 app.use('/login', loginRouter);
 app.use('/oauth-callback', oauthRouter);
 
-gqlServer.applyMiddleware({ app });
+await gqlServer.start()
+gqlServer.applyMiddleware({ app, path: '/graphql' });
 
 app.get('*', (err, req, res, next) => {
   res.status(404).send('Server Error', err);

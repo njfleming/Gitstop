@@ -55,7 +55,14 @@ const resolvers = {
 
       return comment;
     },
-  },
+    addUser: (username) => {
+      const user = {
+        username
+      }
+
+      return user
+    }
+  }
 };
 
 module.exports = resolvers;
